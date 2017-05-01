@@ -8,14 +8,33 @@ const tablet = {
 
 class Dimensions {
 
+  constructor() {
+    RNDimensions.addEventListener('change', (e) => console.log('change', e))
+  }
+
   isPhone() {
     const dim = this.getPortraitDimensions();
+    console.log('isPhone-P', this.getPortraitDimensions());
     return dim.height < tablet.height;
   }
 
   isTablet() {
     const dim = this.getPortraitDimensions();
+    console.log('isTablet-P', this.getPortraitDimensions());
+    console.log('isTablet-L', this.getLandscapeDimensions());
+    console.log('RNDimensions', RNDimensions);
     return dim.height >= tablet.height;
+  }
+
+  isLandscape() {
+    const {width, height} = RNDimensions.get("window");
+    if (width > height)
+      return true;
+    else return false;
+  }
+
+  isPortrait() {
+    return !this.isLandscape();
   }
 
   getPortraitDimensions() {

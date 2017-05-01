@@ -37,6 +37,7 @@ class MainApp extends Component {
   }
 
   renderDetail(contact) {
+    console.log('Landscape?', Dimensions.isLandscape());
     if (Dimensions.isTablet()) {
       return (
         <UserDetail

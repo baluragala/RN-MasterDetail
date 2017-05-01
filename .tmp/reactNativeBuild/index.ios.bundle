@@ -50277,6 +50277,7 @@ var MainApp = function (_Component) {
   }, {
     key: 'renderDetail',
     value: function renderDetail(contact) {
+      console.log('Landscape?', _Dimensions2.default.isLandscape());
       if (_Dimensions2.default.isTablet()) {
         return _react2.default.createElement(_UserDetail2.default, {
           contact: this.props.selectedContact });
@@ -50382,26 +50383,48 @@ var tablet = {
 var Dimensions = function () {
   function Dimensions() {
     babelHelpers.classCallCheck(this, Dimensions);
+
+    _reactNative.Dimensions.addEventListener('change', function (e) {
+      return console.log('change', e);
+    });
   }
 
   babelHelpers.createClass(Dimensions, [{
-    key: "isPhone",
+    key: 'isPhone',
     value: function isPhone() {
       var dim = this.getPortraitDimensions();
+      console.log('isPhone-P', this.getPortraitDimensions());
       return dim.height < tablet.height;
     }
   }, {
-    key: "isTablet",
+    key: 'isTablet',
     value: function isTablet() {
       var dim = this.getPortraitDimensions();
+      console.log('isTablet-P', this.getPortraitDimensions());
+      console.log('isTablet-L', this.getLandscapeDimensions());
+      console.log('RNDimensions', _reactNative.Dimensions);
       return dim.height >= tablet.height;
     }
   }, {
-    key: "getPortraitDimensions",
-    value: function getPortraitDimensions() {
+    key: 'isLandscape',
+    value: function isLandscape() {
       var _RNDimensions$get = _reactNative.Dimensions.get("window"),
           width = _RNDimensions$get.width,
           height = _RNDimensions$get.height;
+
+      if (width > height) return true;else return false;
+    }
+  }, {
+    key: 'isPortrait',
+    value: function isPortrait() {
+      return !this.isLandscape();
+    }
+  }, {
+    key: 'getPortraitDimensions',
+    value: function getPortraitDimensions() {
+      var _RNDimensions$get2 = _reactNative.Dimensions.get("window"),
+          width = _RNDimensions$get2.width,
+          height = _RNDimensions$get2.height;
 
       return {
         width: Math.min(width, height),
@@ -50409,11 +50432,11 @@ var Dimensions = function () {
       };
     }
   }, {
-    key: "getLandscapeDimensions",
+    key: 'getLandscapeDimensions',
     value: function getLandscapeDimensions() {
-      var _RNDimensions$get2 = _reactNative.Dimensions.get("window"),
-          width = _RNDimensions$get2.width,
-          height = _RNDimensions$get2.height;
+      var _RNDimensions$get3 = _reactNative.Dimensions.get("window"),
+          width = _RNDimensions$get3.width,
+          height = _RNDimensions$get3.height;
 
       return {
         width: Math.max(width, height),
@@ -50425,7 +50448,6 @@ var Dimensions = function () {
 }();
 
 var dimensions = new Dimensions();
-console.log('dimensions', JSON.stringify(dimensions));
 exports.default = dimensions;
 }, 417, null, "MasterDetail/src/utils/Dimensions.js");
 __d(/* MasterDetail/src/UserList/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
