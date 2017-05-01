@@ -50226,7 +50226,7 @@ var _UserList = require(418         ); // 418 = ./UserList
 
 var _UserList2 = babelHelpers.interopRequireDefault(_UserList);
 
-var _UserDetail = require(421           ); // 421 = ./UserDetail
+var _UserDetail = require(422           ); // 422 = ./UserDetail
 
 var _UserDetail2 = babelHelpers.interopRequireDefault(_UserDetail);
 
@@ -50460,15 +50460,13 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(45            ); // 45 = react-native
 
-var _reactNativeLoadingSpinnerOverlay = require(419                                   ); // 419 = react-native-loading-spinner-overlay
-
-var _reactNativeLoadingSpinnerOverlay2 = babelHelpers.interopRequireDefault(_reactNativeLoadingSpinnerOverlay);
+var _EnhanceWithLoaderHOC = require(419                            ); // 419 = ../utils/EnhanceWithLoaderHOC
 
 var _Dimensions = require(417                  ); // 417 = ../utils/Dimensions
 
 var _Dimensions2 = babelHelpers.interopRequireDefault(_Dimensions);
 
-var _styles = require(420       ); // 420 = ./styles
+var _styles = require(421       ); // 421 = ./styles
 
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
@@ -50530,15 +50528,6 @@ var UserList = function (_Component) {
       this.setState({ dataSource: this.state.dataSource.cloneWithRows(nextProps.contacts) });
     }
   }, {
-    key: 'showLoader',
-    value: function showLoader() {
-      return _react2.default.createElement(_reactNative.ActivityIndicator, {
-        animating: this.state.animating,
-        style: [_styles2.default.centering, { height: 80 }],
-        size: 'large'
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -50549,7 +50538,6 @@ var UserList = function (_Component) {
           { style: _styles2.default.toolbar },
           'My contacts!'
         ),
-        _react2.default.createElement(_reactNativeLoadingSpinnerOverlay2.default, { visible: this.props.isFetching, textContent: "Loading...", textStyle: { color: 'gray' }, color: "black", overlayColor: "#dde6e9" }),
         _react2.default.createElement(_reactNative.ListView, {
           dataSource: this.state.dataSource,
           renderRow: this.renderContact,
@@ -50562,8 +50550,44 @@ var UserList = function (_Component) {
   return UserList;
 }(_react.Component);
 
-exports.default = UserList;
+exports.default = (0, _EnhanceWithLoaderHOC.enhanceWithLoaderHOC)(UserList);
 }, 418, null, "MasterDetail/src/UserList/index.js");
+__d(/* MasterDetail/src/utils/EnhanceWithLoaderHOC.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.enhanceWithLoaderHOC = undefined;
+
+var _react = require(12     ); // 12 = react
+
+var _react2 = babelHelpers.interopRequireDefault(_react);
+
+var _reactNative = require(45            ); // 45 = react-native
+
+var _reactNativeLoadingSpinnerOverlay = require(420                                   ); // 420 = react-native-loading-spinner-overlay
+
+var _reactNativeLoadingSpinnerOverlay2 = babelHelpers.interopRequireDefault(_reactNativeLoadingSpinnerOverlay);
+
+var enhanceWithLoaderHOC = exports.enhanceWithLoaderHOC = function enhanceWithLoaderHOC(WrappedComponent) {
+  return function (_Component) {
+    babelHelpers.inherits(EnhanceWithLoaderHOC, _Component);
+
+    function EnhanceWithLoaderHOC() {
+      babelHelpers.classCallCheck(this, EnhanceWithLoaderHOC);
+      return babelHelpers.possibleConstructorReturn(this, (EnhanceWithLoaderHOC.__proto__ || Object.getPrototypeOf(EnhanceWithLoaderHOC)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(EnhanceWithLoaderHOC, [{
+      key: 'render',
+      value: function render() {
+        console.log('HOC', this.props);
+        return this.props.isFetching ? _react2.default.createElement(_reactNativeLoadingSpinnerOverlay2.default, { visible: this.props.isFetching, textContent: "Please Wait...", textStyle: { color: 'gray' }, color: "black",
+          overlayColor: "#dde6e9" }) : _react2.default.createElement(WrappedComponent, this.props);
+      }
+    }]);
+    return EnhanceWithLoaderHOC;
+  }(_react.Component);
+};
+}, 419, null, "MasterDetail/src/utils/EnhanceWithLoaderHOC.js");
 __d(/* react-native-loading-spinner-overlay/src/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -50721,7 +50745,7 @@ Spinner.defaultProps = {
   overlayColor: 'rgba(0, 0, 0, 0.25)'
 };
 exports.default = Spinner;
-}, 419, null, "react-native-loading-spinner-overlay/src/index.js");
+}, 420, null, "react-native-loading-spinner-overlay/src/index.js");
 __d(/* MasterDetail/src/UserList/styles.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -50764,7 +50788,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = styles;
-}, 420, null, "MasterDetail/src/UserList/styles.js");
+}, 421, null, "MasterDetail/src/UserList/styles.js");
 __d(/* MasterDetail/src/UserDetail/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -50775,7 +50799,7 @@ var _react2 = babelHelpers.interopRequireDefault(_react);
 
 var _reactNative = require(45            ); // 45 = react-native
 
-var _styles = require(422       ); // 422 = ./styles
+var _styles = require(423       ); // 423 = ./styles
 
 var _styles2 = babelHelpers.interopRequireDefault(_styles);
 
@@ -50831,7 +50855,7 @@ UserList.propTypes = {
 };
 
 exports.default = UserList;
-}, 421, null, "MasterDetail/src/UserDetail/index.js");
+}, 422, null, "MasterDetail/src/UserDetail/index.js");
 __d(/* MasterDetail/src/UserDetail/styles.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -50872,7 +50896,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = styles;
-}, 422, null, "MasterDetail/src/UserDetail/styles.js");
+}, 423, null, "MasterDetail/src/UserDetail/styles.js");
 __d(/* react-redux/lib/index.js */function(global, require, module, exports) {'use strict';
 
 exports.__esModule = true;

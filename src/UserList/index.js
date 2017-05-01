@@ -5,10 +5,10 @@ import {
   Text,
   ListView,
   Image,
-  TouchableOpacity,
-  ActivityIndicator
+  TouchableOpacity
 } from 'react-native';
-import Spinner from 'react-native-loading-spinner-overlay';
+
+import {enhanceWithLoaderHOC} from '../utils/EnhanceWithLoaderHOC';
 import Dimensions from '../utils/Dimensions';
 import styles from './styles';
 
@@ -47,19 +47,10 @@ class UserList extends Component {
   };
 
 
-  showLoader() {
-    return <ActivityIndicator
-      animating={this.state.animating}
-      style={[styles.centering, {height: 80}]}
-      size="large"
-    />
-  }
-
   render() {
     return (
       <View style={styles.main}>
         <Text style={styles.toolbar}>My contacts!</Text>
-        <Spinner visible={this.props.isFetching} textContent={"Loading..."} textStyle={{color: 'gray'}} color={"black"} overlayColor={"#dde6e9"}/>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderContact}
@@ -72,4 +63,4 @@ class UserList extends Component {
   }
 }
 
-export default UserList;
+export default enhanceWithLoaderHOC(UserList);
