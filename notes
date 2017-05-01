@@ -1,0 +1,5 @@
+Android error: Could not connect to development server
+
+Solution:
+
+adb reverse tcp:8081 tcp:8081

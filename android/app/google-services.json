@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "374266718935",
+    "firebase_url": "https://logitech-rn.firebaseio.com",
+    "project_id": "logitech-rn",
+    "storage_bucket": "logitech-rn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374266718935:android:e858012d4d41b195",
+        "android_client_info": {
+          "package_name": "com.masterdetail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374266718935-tfasr0lp3snm8ie7muek0k8u652943cg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYBUs8_aQBvNczIfkA_ZoytaWCPaEuBS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
